@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "skupper"
+version = "0.1.0"
+description = ""
+authors = ["Christian Assing <cassing@redhat.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+fastapi = "^0.79.0"
+uvicorn = "^0.18.2"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^5.0.4"
+mypy = "^0.971"
