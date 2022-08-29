@@ -124,3 +124,6 @@ parameters:
   value: 100m
 - name: CPU_LIMIT
   value: 200m
+- name: SERVICE_ACCOUNT
+  value: "http-stub"
+  deplayName: http-stub service account
