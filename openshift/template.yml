@@ -19,7 +19,7 @@ objects:
       app: ${INSTANCE_NAME}
     name: ${INSTANCE_NAME}
   spec:
-    replicas: ${REPLICAS}
+    replicas: ${{REPLICAS}}
     selector:
       matchLabels:
         app: ${INSTANCE_NAME}
@@ -113,7 +113,7 @@ parameters:
 - name: IMAGE_TAG
   value: latest
 - name: REPLICAS
-  value: 3
+  value: "3"
 - name: INSTANCE_NAME
   value: example
 - name: MEMORY_REQUESTS
