@@ -96,7 +96,7 @@ objects:
     selector:
       app: ${INSTANCE_NAME}
     ports:
-    - name: metrics
+    - name: http
       protocol: TCP
       port: 80
       targetPort: 8080
