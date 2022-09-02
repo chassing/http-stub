@@ -15,6 +15,11 @@ objects:
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
+    annotations:
+      skupper.io/address: "vault"
+      skupper.io/port: "80"
+      skupper.io/proxy: "http"
+      skupper.io/target: "8080"
     labels:
       app: ${INSTANCE_NAME}
     name: ${INSTANCE_NAME}
@@ -86,21 +91,6 @@ objects:
             initialDelaySeconds: 3
             periodSeconds: 10
             timeoutSeconds: 3
-- apiVersion: v1
-  kind: Service
-  metadata:
-    labels:
-      app: ${INSTANCE_NAME}
-    name: ${INSTANCE_NAME}
-  spec:
-    selector:
-      app: ${INSTANCE_NAME}
-    ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 8080
-    type: ClusterIP
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
