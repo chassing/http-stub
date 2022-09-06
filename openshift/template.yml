@@ -17,7 +17,7 @@ objects:
   metadata:
     annotations:
       skupper.io/address: "vault"
-      skupper.io/port: "80"
+      skupper.io/port: "8080"
       skupper.io/proxy: "http"
       skupper.io/target: "8080"
     labels:
