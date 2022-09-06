@@ -11,7 +11,7 @@ objects:
     minAvailable: 1
     selector:
       matchLabels:
-        app: ${INSTANCE_NAME}
+        app: http-stub
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
@@ -21,13 +21,13 @@ objects:
       skupper.io/proxy: "http"
       skupper.io/target: "8080"
     labels:
-      app: ${INSTANCE_NAME}
+      app: http-stub
     name: ${INSTANCE_NAME}
   spec:
     replicas: ${{REPLICAS}}
     selector:
       matchLabels:
-        app: ${INSTANCE_NAME}
+        app: http-stub
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -36,7 +36,7 @@ objects:
     template:
       metadata:
         labels:
-          app: ${INSTANCE_NAME}
+          app: http-stub
       spec:
         affinity:
           podAntiAffinity:
