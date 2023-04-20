@@ -99,7 +99,7 @@ objects:
   - name: ${IMAGE_PULL_SECRET}
 parameters:
 - name: IMAGE
-  value: quay.io/app-sre/http-stub
+  value: quay.io/cassing/http-stub
 - name: IMAGE_TAG
   value: latest
 - name: REPLICAS
