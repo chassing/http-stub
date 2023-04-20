@@ -11,7 +11,7 @@ objects:
     minAvailable: 1
     selector:
       matchLabels:
-        app: http-stub
+        app.kubernetes.io/name: ${INSTANCE_NAME}
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
@@ -21,13 +21,14 @@ objects:
       skupper.io/proxy: "http"
       skupper.io/target: "8080"
     labels:
-      app: http-stub
+      app.kubernetes.io/name: ${INSTANCE_NAME}
+      app.kubernetes.io/component: http-stub
     name: ${INSTANCE_NAME}
   spec:
     replicas: ${{REPLICAS}}
     selector:
       matchLabels:
-        app: http-stub
+        app.kubernetes.io/name: ${INSTANCE_NAME}
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -36,29 +37,18 @@ objects:
     template:
       metadata:
         labels:
-          app: http-stub
+          app.kubernetes.io/name: ${INSTANCE_NAME}
       spec:
         affinity:
           podAntiAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                      - ${INSTANCE_NAME}
-                  topologyKey: kubernetes.io/hostname
-                weight: 90
-              - podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                      - ${INSTANCE_NAME}
-                  topologyKey: topology.kubernetes.io/zone
-                weight: 100
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/component
+                  operator: In
+                  values:
+                  - http-stub
+              topologyKey: "kubernetes.io/hostname"
         serviceAccountName: ${SERVICE_ACCOUNT}
         containers:
         - image: ${IMAGE}:${IMAGE_TAG}
