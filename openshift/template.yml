@@ -29,6 +29,7 @@ objects:
     selector:
       matchLabels:
         app.kubernetes.io/name: ${INSTANCE_NAME}
+        app.kubernetes.io/component: http-stub
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -38,6 +39,7 @@ objects:
       metadata:
         labels:
           app.kubernetes.io/name: ${INSTANCE_NAME}
+          app.kubernetes.io/component: http-stub
       spec:
         affinity:
           podAntiAffinity:
