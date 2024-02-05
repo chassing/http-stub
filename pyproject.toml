@@ -6,7 +6,7 @@ authors = ["Christian Assing <cassing@redhat.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-fastapi = "^0.79.0"
+fastapi = "^0.109.1"
 uvicorn = "^0.18.2"
 
 [tool.poetry.dev-dependencies]
